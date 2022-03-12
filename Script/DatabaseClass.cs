@@ -16,6 +16,3 @@ public class DatabaseClass{
     public bool Shellfish;
     public bool Allergy;
 }
-public class Data {
-   
-}

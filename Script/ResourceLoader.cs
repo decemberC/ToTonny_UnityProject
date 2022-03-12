@@ -6,13 +6,18 @@ using Newtonsoft.Json.Linq;
 
 public class ResourceLoader : MonoBehaviour
 {
-     void Start()
+      void Start()
     {
         var JsonText = Resources.Load<TextAsset>("json_database");
         //Debug.Log(JsonText); 
-        JObject jResult = JObject.Parse(JsonText.text);
+        JObject jResult =  JObject.Parse(JsonText.text);
         foreach(var i in jResult["Content"].Children()){
-        Debug.Log(i.ToObject<DatabaseClass>().Name);
+         DataManager.DB.Add(i.ToObject<DatabaseClass>());
+        }
+        var dataInfo = typeof(DatabaseClass).GetFields();
+        for(int c =0; c<dataInfo.Length;c++){
+            DataManager.translate.Add(c,dataInfo[c].Name);
+            
         }
     }
 
