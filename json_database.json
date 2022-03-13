@@ -1,6 +1,5 @@
 {
- "Content":[
-  {
+  "出前一丁 麻油味":{
     "name":"出前一丁 麻油味",
     "KeyWord":"出前一丁",
     "Energy":"463kcal",
@@ -12,9 +11,9 @@
     "Sodium":"2360mg",
     "Gluten":true,
     "Shellfish":false, 
-    "Allergy": true
+    "過敏": true
   },
-    {
+    "出前一丁 黑油味":{
     "name":"出前一丁 黑油味",
     "KeyWord":"出前一丁",
     "Energy":"441kcal",
@@ -26,9 +25,9 @@
     "Sodium":"1801mg",
     "Gluten":true,
     "Shellfish":false,
-    "Allergy": true
+    "過敏": true
   },
-    {
+    "石鍋拉麵":{
     "name":"石鍋拉麵",
     "KeyWord":"石鍋拉麵",
     "Energy":"432kcal",
@@ -40,11 +39,11 @@
     "Sodium":"1767mg",
     "Gluten":true,
     "Shellfish":false,
-    "Allergy": true
+    "過敏": true
   },
-    {
+    "可口可樂":{
     "name":"可口可樂",
-    "KeyWord":"可口可樂",
+    "KeyWord":"可口可樂, coca.cola",
     "Energy":"139kcal",
     "Protein":"0g",
     "Saturated":"0g",
@@ -54,11 +53,11 @@
     "Sodium":"13mg",
     "Gluten":false,
     "Shellfish":false, 
-    "Allergy": false
+    "過敏": false
   },
-    {
+    "印尼蝦片":{
     "name":"印尼蝦片",
-    "KeyWord":"印尼蝦片",
+    "KeyWord":"印尼蝦片, 明輝",
     "Energy":"200kcal",
     "Protein":"0.6g",
     "Saturated":"0.7g",
@@ -68,11 +67,11 @@
     "Sodium":"13mg",
     "Gluten":false,
     "Shellfish":true,
-    "Allergy": true
+    "過敏": true
   },
-    {
+    "Oreo":{
     "name":"Oreo",
-    "KeyWord":"Oreo",
+    "KeyWord":"Oreo, oreo",
     "Energy":"480kcal",
     "Protein":"5.0g",
     "Saturated":"10g",
@@ -82,11 +81,11 @@
     "Sodium":"482mg",
     "Gluten":true,
     "Shellfish":false,
-    "Allergy": true
+    "過敏": true
   },
-    {
+    "Kinder牛奶朱古力":{
     "name":"Kinder牛奶朱古力",
-    "KeyWord":"Kinder牛奶朱古力",
+    "KeyWord":"Kinder, 朱古力, chocolate",
     "Energy":"564kcal",
     "Protein":"8.7g",
     "Saturated":"22.6g",
@@ -96,11 +95,11 @@
     "Sodium":"123mg",
     "Gluten":true,
     "Shellfish":false,
-    "Allergy": true
+    "過敏": true
   },
-    {
+    "寶礦力":{
     "name":"寶礦力",
-    "KeyWord":"寶礦力",
+    "KeyWord":"寶礦力, pocari sweat,POCARI SWEAT",
     "Energy":"26kcal",
     "Protein":"0g",
     "Saturated":"0g",
@@ -110,11 +109,11 @@
     "Sodium":"49mg",
     "Gluten":false,
     "Shellfish":false,
-    "Allergy":false
+    "過敏":false
   },
-    {
+    "維他奶豆奶 375ml":{
     "name":"維他奶豆奶 375ml",
-    "KeyWord":"維他",
+    "KeyWord":"維他, 維他奶, 豆奶",
     "Energy":"47kcal",
     "Protein":"1.8g",
     "Saturated":"0.4g",
@@ -124,11 +123,11 @@
     "Sodium":"40mg",
     "Gluten":true,
     "Shellfish":false,
-    "Allergy":true
+    "過敏":true
   },
-    {
-    "name":"維他奶專精豆奶 375ml",
-    "KeyWord":"維他",
+    "維他奶麥精豆奶 375ml":{
+    "name":"維他奶麥精豆奶 375ml",
+    "KeyWord":"維他, 麥精, 豆奶",
     "Energy":"51kcal",
     "Protein":"1.8g",
     "Saturated":"0.5g",
@@ -138,11 +137,11 @@
     "Sodium":"75mg",
     "Gluten":true,
     "Shellfish":false,
-    "Allergy":true
+    "過敏":true
   },
-    {
+    "維他檸檬茶 375ml":{
     "name":"維他檸檬茶 375ml",
-    "KeyWord":"維他",
+    "KeyWord":"維他, 檸檬茶",
     "Energy":"55kcal",
     "Protein":"0g",
     "Saturated":"0g",
@@ -152,11 +151,11 @@
     "Sodium":"10mg",
     "Gluten":false,
     "Shellfish":false,
-    "Allergy":false
+    "過敏":false
   },
-    {
+    "卡樂B蝦條 原味":{
     "name":"卡樂B蝦條 原味",
-    "KeyWord":"卡樂B蝦條",
+    "KeyWord":"卡樂B, 蝦條",
     "Energy":"483kcal",
     "Protein":"4.9g",
     "Saturated":"10.8g",
@@ -166,9 +165,9 @@
     "Sodium":"815mg",
     "Gluten":true,
     "Shellfish":true,
-    "Allergy":true
+    "過敏":true
   },
-    {
+    "Pocky 原味":{
     "name":"Pocky 原味",
     "KeyWord":"Pocky",
     "Energy":"483kcal",
@@ -180,25 +179,25 @@
     "Sodium":"815mg",
     "Gluten":true,
     "Shellfish":true,
-    "Allergy":true
+    "過敏":true
   },
-    {
+    "Heinz 蕃茄醬":{
     "name":"Heinz 蕃茄醬",
-    "KeyWord":"Heinz",
+    "KeyWord":"蕃茄醬",
     "Energy":"20kcal",
     "Protein":"0g",
     "Saturated":"0g",
     "Trans Fat":"0g",
     "Carbohydrate":"5g",
-    "Sugars":"0g",
+    "Sugars":"/",
     "Sodium":"16.0mg",
     "Gluten":true,
     "Shellfish":false,
-    "Allergy":true
+    "過敏":true
   },
-    {
+    "合味道 豬骨濃湯味 Big":{
     "name":"合味道 豬骨濃湯味 Big",
-    "KeyWord":"合味道",
+    "KeyWord":"合味道, 杯麵",
     "Energy":"419kcal",
     "Protein":"11.4g",
     "Saturated":"7.8g",
@@ -208,11 +207,11 @@
     "Sodium":"2333mg",
     "Gluten":true,
     "Shellfish":false,
-    "Allergy":true
+    "過敏":true
   },
-    {
+    "合味道 海鮮味":{
     "name":"合味道 海鮮味",
-    "KeyWord":"合味道",
+    "KeyWord":"合味道, 杯麵",
     "Energy":"432kcal",
     "Protein":"12.1g",
     "Saturated":"8.5g",
@@ -222,11 +221,11 @@
     "Sodium":"2314mg",
     "Gluten":true,
     "Shellfish":true,
-    "Allergy":true
+    "過敏":true
   },
-    {
+    "合味道 雞肉味":{
     "name":"合味道 雞肉味",
-    "KeyWord":"合味道",
+    "KeyWord":"合味道, 杯麵",
     "Energy":"324kcal",
     "Protein":"9.5g",
     "Saturated":"5.4g",
@@ -236,11 +235,11 @@
     "Sodium":"1197mg",
     "Gluten":true,
     "Shellfish":false,
-    "Allergy":true
+    "過敏":true
   },
-    {
-    "name":"涼茶舍 大紅袍",
-    "KeyWord":"涼茶舍",
+    "涼。茶舍 大紅袍":{
+    "name":"涼。茶舍 大紅袍",
+    "KeyWord":"涼。茶舍, 茶, 大紅袍",
     "Energy":"0kcal",
     "Protein":"0g",
     "Saturated":"0g",
@@ -250,11 +249,11 @@
     "Sodium":"44mg",
     "Gluten":false,
     "Shellfish":false,
-    "Allergy":false
+    "過敏":false
   },
-    {
-    "name":"涼茶舍 消茶 普洱",
-    "KeyWord":"涼茶舍",
+    "涼。茶舍 普洱":{
+    "name":"涼。茶舍 普洱",
+    "KeyWord":"涼。茶舍, 茶, 普洱, 消茶",
     "Energy":"0kcal",
     "Protein":"0g",
     "Saturated":"0g",
@@ -264,11 +263,11 @@
     "Sodium":"95mg",
     "Gluten":false,
     "Shellfish":false,
-    "Allergy":false
+    "過敏":false
   },
-    {
-    "name":"涼茶舍 茉莉綠茶",
-    "KeyWord":"涼茶舍",
+    "涼。茶舍 茉莉綠茶":{
+    "name":"涼。茶舍 茉莉綠茶",
+    "KeyWord":"涼。茶舍, 茶, 茉莉綠茶",
     "Energy":"0kcal",
     "Protein":"0g",
     "Saturated":"0g",
@@ -278,11 +277,11 @@
     "Sodium":"23mg",
     "Gluten":false,
     "Shellfish":false,
-    "Allergy":false
+    "過敏":false
   },
-    {
+    "麥提莎":{
     "name":"麥提莎",
-    "KeyWord":"麥提莎",
+    "KeyWord":"麥提莎, 朱古力, chocolate",
     "Energy":"224kcal",
     "Protein":"2.8g",
     "Saturated":"6.3g",
@@ -292,11 +291,11 @@
     "Sodium":"50mg",
     "Gluten":true,
     "Shellfish":false,
-    "Allergy":true
+    "過敏":true
   },
-    {
+    "家樂氏 玉米片原味":{
     "name":"家樂氏 玉米片原味",
-    "KeyWord":"玉米片",
+    "KeyWord":"玉米片, 家樂氏",
     "Energy":"370kcal",
     "Protein":"7g",
     "Saturated":"0.2g",
@@ -306,11 +305,11 @@
     "Sodium":"667mg",
     "Gluten":true,
     "Shellfish":false,
-    "Allergy":true
+    "過敏":true
   },
-    {
+    "家樂氏 Special香脆玉米片原味":{
     "name":"家樂氏 Special香脆玉米片原味",
-    "KeyWord":"玉米片",
+    "KeyWord":"玉米片, 家樂氏, 香脆玉米片",
     "Energy":"371kcal",
     "Protein":"8g",
     "Saturated":"0.5g",
@@ -320,11 +319,11 @@
     "Sodium":"400mg",
     "Gluten":true,
     "Shellfish":false,
-    "Allergy":true 
+    "過敏":true 
   },
-   {
+   "家樂氏 香甜玉米片原味":{
     "name":"家樂氏香甜玉米片原味",
-    "KeyWord":"玉米片",
+    "KeyWord":"玉米片, 家樂氏, 香甜玉米片",
     "Energy":"377kcal",
     "Protein":"5g",
     "Saturated":"0.2g",
@@ -334,7 +333,7 @@
     "Sodium":"503mg",
     "Gluten":true,
     "Shellfish":false,
-    "Allergy":true
-   }
-]
+    "過敏":true
+  }
+
 }
