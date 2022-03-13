@@ -18,7 +18,7 @@ public class DataMap : MonoBehaviour
         }
         for (int i = 0; i < dicDup.Count; i++)
         {
-            Debug.Log(typeof(DatabaseClass).GetField(dicDup[i]).GetValue(searchResultDup));
+            dataPlan[i].text = typeof(DatabaseClass).GetField(dicDup[i]).GetValue(searchResultDup).ToString();;
         }
     }
 }
