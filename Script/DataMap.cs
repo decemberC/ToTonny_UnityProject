@@ -10,15 +10,16 @@ public class DataMap : MonoBehaviour
     {
         DatabaseClass searchResultDup = DataManager.searchResult;
         Dictionary<int, string> dicDup = DataManager.translate;
- 
+        
         if (searchResultDup == null)
         {
             Debug.Log("null");
             return;
         }
+        ShowData._showData.showPanel.SetActive(true);
         for (int i = 0; i < dicDup.Count; i++)
         {
-            dataPlan[i].text = typeof(DatabaseClass).GetField(dicDup[i]).GetValue(searchResultDup).ToString();;
+            dataPlan[i].text = typeof(DatabaseClass).GetField(dicDup[i]).GetValue(searchResultDup).ToString();
         }
     }
 }

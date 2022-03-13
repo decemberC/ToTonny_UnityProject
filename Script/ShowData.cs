@@ -33,7 +33,7 @@ public class ShowData : MonoBehaviour
         }
     }
     private static void DinS(){
-        showData.showPanel.SetActive(true);
+        WebCamTextureToCloudVision.aiSearch.StopAllCoroutines();
         showData.showPanel.GetComponent<DataMap>().MapDate();
     }
     private static void DinO(){}
