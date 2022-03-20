@@ -16,8 +16,8 @@ public class WebCamTextureToCloudVision : MonoBehaviour
     public int maxResults = 10;
     public GameObject ARPanel;
     public Text resultText, resultArray;
-    public WebCamTexture webcamTexture;
-    public static WebCamTextureToCloudVision aiSearch;
+    public 
+    WebCamTexture webcamTexture;
     Texture2D texture2D;
     Dictionary<string, string> headers;
 
@@ -61,9 +61,10 @@ public class WebCamTextureToCloudVision : MonoBehaviour
 
     void Start()
     {
-        aiSearch=this;
+        
         headers = new Dictionary<string, string>();
         headers.Add("Content-Type", "application/json; charset=UTF-8");
+
         if (apiKey == null || apiKey == "")
             Debug.LogError("No API key. Please set your API key into the \"Web Cam Texture To Cloud Vision(Script)\" component.");
 
@@ -83,9 +84,7 @@ public class WebCamTextureToCloudVision : MonoBehaviour
                 {
                     m.mainTexture = webcamTexture;
                 }
-            }
-            else
-            {
+            }else{
                 Debug.Log("No Renderer");
             }
             webcamTexture.Play();
@@ -94,8 +93,9 @@ public class WebCamTextureToCloudVision : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    
+    public void RebootCapture(){
+        StartCoroutine("Capture");
+    }
 
     private IEnumerator Capture()
     {
@@ -114,7 +114,7 @@ public class WebCamTextureToCloudVision : MonoBehaviour
                 texture2D = new Texture2D(webcamTexture.width, webcamTexture.height, TextureFormat.RGBA32, false);
             }
             texture2D.SetPixels(pixels);
-
+            
             byte[] jpg = texture2D.EncodeToJPG();
             string base64 = System.Convert.ToBase64String(jpg);
             Debug.Log(base64);
@@ -160,11 +160,7 @@ public class WebCamTextureToCloudVision : MonoBehaviour
                                     resultArray.text += ", ";
                             }
                             DataManager.searchResult = ContentSearch.SearchItem(resultArray.text);
-                            if (DataManager.searchResult != null)
-                            {
-                                
-                                ShowData.DisplayData();
-                            }
+                            ShowData.DisplayData();
                         }
                     }
                     else
