@@ -18,16 +18,15 @@ public class ShowData : MonoBehaviour
         }
         
     }
-    public void ClosePannel(){
-        showData.showPanel.SetActive(false);
-    }
     public void Start()
     {
         if(showData == null){
             showData = this;
         }
     }
-
+ public void ClosePannel(){
+        showData.showPanel.SetActive(false);
+    }
     public static void DisplayData(){
         if(showData.isShowOnSamePage){
             DinS();
@@ -36,7 +35,7 @@ public class ShowData : MonoBehaviour
         }
     }
     private static void DinS(){
-        showData.showPanel.SetActive(true);
+        WebCamTextureToCloudVision.aiSearch.StopAllCoroutines();
         showData.showPanel.GetComponent<DataMap>().MapDate();
     }
     private static void DinO(){}
