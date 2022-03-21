@@ -30,6 +30,7 @@ public class WebCamTextureToCloudVision : MonoBehaviour
     [System.Serializable]
     public class AnnotateImageRequest
     {
+        public ImageContext imageContext; 
         public Image image;
         public List<Feature> features;
     }
@@ -40,6 +41,10 @@ public class WebCamTextureToCloudVision : MonoBehaviour
         public string content;
     }
 
+    [System.Serializable]
+    public class ImageContext {
+        public string[] languageHints;
+    }
     [System.Serializable]
     public class Feature
     {
@@ -127,6 +132,10 @@ public class WebCamTextureToCloudVision : MonoBehaviour
 
             AnnotateImageRequest request = new AnnotateImageRequest();
             request.image = new Image();
+            request.imageContext = new ImageContext();
+            request.imageContext.languageHints = new string[] {
+                "en" , "zh-Hant"
+            };
             request.image.content = base64;
             request.features = new List<Feature>();
             Feature feature = new Feature();
