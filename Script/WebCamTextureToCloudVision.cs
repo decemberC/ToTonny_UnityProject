@@ -171,7 +171,7 @@ public class WebCamTextureToCloudVision : MonoBehaviour
                                 if (i != texts.Length - 1)
                                     resultArray.text += ", ";
                             }
-                            DataManager.searchResult = ContentSearch.SearchItem(resultArray.text);
+                            DataManager.searchResult = ContentSearch.SearchItem(resultArray.text).Result;
                             if (DataManager.searchResult != null)
                             {
                                 
