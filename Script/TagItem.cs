@@ -1,20 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using UnityEngine.UI;
-
-public class TagItem:MonoBehaviour
+using Newtonsoft.Json;
+[CreateAssetMenu(menuName ="TagItem")]
+public class TagItem:ScriptableObject
 {
-    public string value ;
+    //The members of ValueList should follow
+    //the fields of DatabaseClass 
+   public enum ValueList{
+    Name,
+     KeyWord,
+     Energy,
+     Protein,
+     Saturated,
+     TransFat,
+     Carbohydrate,
+     Sugars,
+     Sodium,
+     Gluten,
+     Shellfish,
+     Allergy
+   }
+   public enum TagType{
+     Display,
+     Alert
+   }
+    public ValueList value = new ValueList();
+    public TagType type = new TagType();
     public bool causeAlert;
     public bool displayable;
-    public void Start(){
-        Toggle toggle=GetComponent<Toggle>();
-        if(WakeUpManager.tagSetuper.Contains(gameObject.name)){
-        toggle.isOn=true;
-        TagSys._tagsys.SetTagItem(toggle);
-    }else{
-        toggle.isOn=false;
-    }
-    }
 }

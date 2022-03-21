@@ -7,15 +7,15 @@ using Newtonsoft.Json.Linq;
 
 public class ResourceLoader : MonoBehaviour
 {
+    public List<TagItem> LoadTagItem;
     AsyncOperation loader;
       void Start()
     {
         var JsonText = Resources.Load<TextAsset>("Json/json_database");
-        var appSet = Resources.Load<TextAsset>("Json/AppSetting");
         //Debug.Log(JsonText); 
         //ReadDB Begin
         JObject jResult =  JObject.Parse(JsonText.text);
-        loader = SceneManager.LoadSceneAsync("MainMenu", LoadSceneMode.Single);
+        loader =  SceneManager.LoadSceneAsync("MainMenu", LoadSceneMode.Single);
         loader.allowSceneActivation = false;
         foreach (var i in jResult["Content"].Children()){
          DataManager.DB.Add(i.ToObject<DatabaseClass>());
@@ -25,10 +25,7 @@ public class ResourceLoader : MonoBehaviour
             DataManager.translate.Add(c,dataInfo[c].Name);
         }
         //ReadDB End
-        //SerializeApp Begin
-        SerilaizeJsonFormat appSetUp = JsonConvert.DeserializeObject<SerilaizeJsonFormat>(appSet.text);
-        WakeUpManager.tagSetuper =new List<string>(appSetUp.tagArray);
-        //SerializeApp End
+        TagSys.TagList=LoadTagItem;
     }
 
      
@@ -42,10 +39,6 @@ public class ResourceLoader : MonoBehaviour
     }
 }
 
-private class SerilaizeJsonFormat{
-    [JsonProperty("tag")]
-    public string[] tagArray;
-}
 }
 
 
