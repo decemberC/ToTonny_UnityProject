@@ -15,14 +15,18 @@ public class ContentSearch : MonoBehaviour
                      group i by i.KeyWord into x
                      where feedback.Contains(x.Key)
                      select x;
-
+        DatabaseClass outData = null;
+        float highestMark =0;
+        float searchmark = 0;
         foreach (var searchRes in result)
         {
             foreach (var data in searchRes)
             {
-                if (await PercentSearch(feedback.ToCharArray(), data.Name.ToArray()) >= 0.7f)
+                searchmark = await PercentSearch(feedback.ToCharArray(), data.Name.ToArray());
+                if (searchmark>0.7f&& searchmark>highestMark)
                 {
-                    return data;
+                    highestMark = searchmark;
+                    outData = data;
                 }
                 /*if (feedback.Contains(data.Name))
                 {
@@ -30,7 +34,7 @@ public class ContentSearch : MonoBehaviour
                 }*/
             }
         }
-        return null;
+        return outData;
 
     }
     private static async Task<float> PercentSearch(char[] compareChar, char[] benchmarkChar)
@@ -41,7 +45,6 @@ public class ContentSearch : MonoBehaviour
         {
             foreach (char c in compareChar)
             {
-                Debug.Log(c+"    "+addedChar.Count);
                 if (await PercentSearch(c, b,addedChar))
                 {
                     outer += 1;
@@ -50,8 +53,8 @@ public class ContentSearch : MonoBehaviour
                 }
             }
         }
-
-        return (float)outer / benchmarkChar.Length;
+        //Debug.Log(benchmarkChar.Length+"  "+ (float)outer / compareChar.Length*(benchmarkChar.Length-addedChar.Count));
+        return ((float)outer / compareChar.Length*(benchmarkChar.Length-addedChar.Count));
     }
     private static async Task<bool> PercentSearch(char compareChar, char benchmarkChar,List<char> checkList)
     {
