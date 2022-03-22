@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Linq;
+using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,8 +23,9 @@ public class ContentSearch : MonoBehaviour
         {
             foreach (var data in searchRes)
             {
-                searchmark = await PercentSearch(feedback.ToCharArray(), data.Name.ToArray());
-                if (searchmark>0.7f&& searchmark>highestMark)
+                searchmark = await PercentSearch( feedback.ToCharArray(), data.Name.ToArray());
+                //Debug.Log((float)data.KeyWord.ToArray().Length/ feedback.ToCharArray().Length*data.KeyWord.ToArray().Length);
+                if (searchmark>(float)Math.Round((float)data.KeyWord.ToArray().Length/ feedback.ToCharArray().Length*data.KeyWord.ToArray().Length,4)&& searchmark>highestMark)
                 {
                     highestMark = searchmark;
                     outData = data;
@@ -54,7 +56,7 @@ public class ContentSearch : MonoBehaviour
             }
         }
         //Debug.Log(benchmarkChar.Length+"  "+ (float)outer / compareChar.Length*(benchmarkChar.Length-addedChar.Count));
-        return ((float)outer / compareChar.Length*(benchmarkChar.Length-addedChar.Count));
+        return (float)Math.Round((float)outer / compareChar.Length*(benchmarkChar.Length-addedChar.Count),4);
     }
     private static async Task<bool> PercentSearch(char compareChar, char benchmarkChar,List<char> checkList)
     {
