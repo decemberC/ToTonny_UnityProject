@@ -30,7 +30,7 @@ public class LanguageSettle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(nowFieldLan);
+      
         if(nowFieldLan != DataManage.appLan){
             if(isTextMesh){
                 
