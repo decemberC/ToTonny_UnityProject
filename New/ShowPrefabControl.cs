@@ -60,33 +60,63 @@ public class ShowPrefabControl : MonoBehaviour
                 if (!showList.ContainsKey(pName))
                 {
                     GameObject instaGameobj = GameObject.Instantiate(i, new Vector3(0+showedNum*0.02f , 0,0), Quaternion.identity,item.transform);
+                    
                     showedNum++;
                     //instaGameobj.transform.localScale =new Vector3(0.02f,0.02f,0.02f); 
-                    Debug.Log(instaGameobj.transform.lossyScale);
+                    
                     showList.Add(pName, instaGameobj);
                 }
                 else if (!(showList[pName] == null) && !showList[pName].activeInHierarchy)
                 {
                     showList[pName].transform.position = new Vector3(item.transform.position.x+showedNum*0.02f, item.transform.position.y, item.transform.position.z);
                     //showList[pName].transform.localScale = new Vector3(0.02f, 0.02f, 0.02f);
-                    
                     showedNum++;
-                    Debug.Log(showList[pName].transform.position);
+                    
                     showList[pName].SetActive(true);
 
                 }
                 else
                 {
-                    showList[pName].transform.rotation = item.transform.rotation;
+                    showList[pName].transform.rotation = Quaternion.Euler( item.transform.rotation.eulerAngles.x,item.transform.rotation.eulerAngles.y+180,-item.transform.rotation.eulerAngles.z);
                     showList[pName].transform.position = new Vector3(item.transform.position.x+showedNum*0.02f, item.transform.position.y, item.transform.position.z);
                     
                     //showList[pName].transform.localScale = new Vector3(0.02f, 0.02f, 0.02f);
                     showedNum++;
-                    Debug.Log(showList[pName].transform.position);
+                    
                 }
                 continue;
             }
+            if (!data.gluten && !data.shellfish)
+            {
+                if (!showList.ContainsKey(pName))
+                {
+                    GameObject instaGameobj = GameObject.Instantiate(i, new Vector3(0+showedNum*0.02f , 0,0), Quaternion.identity,item.transform);
+                    
+                    showedNum++;
+                    //instaGameobj.transform.localScale =new Vector3(0.02f,0.02f,0.02f); 
+                    
+                    showList.Add(pName, instaGameobj);
+                }
+                else if (!(showList[pName] == null) && !showList[pName].activeInHierarchy)
+                {
+                    showList[pName].transform.position = new Vector3(item.transform.position.x+showedNum*0.02f, item.transform.position.y, item.transform.position.z);
+                    //showList[pName].transform.localScale = new Vector3(0.02f, 0.02f, 0.02f);
+                    showedNum++;
+                    
+                    showList[pName].SetActive(true);
 
+                }
+                else
+                {
+                    showList[pName].transform.rotation = Quaternion.Euler( item.transform.rotation.eulerAngles.x,item.transform.rotation.eulerAngles.y+180,-item.transform.rotation.eulerAngles.z);
+                    showList[pName].transform.position = new Vector3(item.transform.position.x+showedNum*0.02f, item.transform.position.y, item.transform.position.z);
+                    
+                    //showList[pName].transform.localScale = new Vector3(0.02f, 0.02f, 0.02f);
+                    showedNum++;
+                    
+                }
+                continue;
+            }
         }}
     }
     public void NoShowPrefab(ARTrackedImage item)
