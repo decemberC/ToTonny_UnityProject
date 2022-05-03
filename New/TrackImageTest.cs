@@ -40,8 +40,7 @@ public class TrackImageTest : MonoBehaviour
                 //WebCamTextureToCloudVision.aiSearch.ActivateCapture(arCam, item.referenceImage.name);
                
                     searchResult = ContentSearch.SearchItem(serachName);
-                    //result.text = item.transform.parent.transform.localScale.ToString();
-                    
+                    PlayerPrefs.SetString("History",PlayerPrefs.GetString("History")+searchResult.dName+'|'+System.DateTime.Now.ToString("dd/MM/yyyy HH:mm")+';');
                     ShowPrefabControl.self.ShowPrefabByData(searchResult, item, arCam);
                     
                 /*if (searchResult != null)

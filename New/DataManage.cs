@@ -2,22 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DataManage : MonoBehaviour
+public class DataManage:MonoBehaviour
 {
     public static string colorPicker;
     public static DataManage self;
-    public static Dictionary<string, string> languageTable = new Dictionary<string, string>();
+    public static List<float> searchResultH = new List<float>();
+        public static Dictionary<string, string> languageTable = new Dictionary<string, string>();
     public static string appLan;
+    public static List<SaveDataClass> historyList = new List<SaveDataClass>();
     public List<DatabaseClass> DB;
     void Start()
     {
-        self = this;
-        if (languageTable.Count == 0)
+        self=this;
+              if (languageTable.Count == 0)
         {
             appLan = "En";
             SetLanguageTable(appLan);
         }
     }
+    // Start is called before the first frame update
     public static void SetLanguageTable(string language)
     {
         if (languageTable.Count != 0)
