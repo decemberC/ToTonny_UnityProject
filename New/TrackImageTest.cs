@@ -11,7 +11,7 @@ public class TrackImageTest : MonoBehaviour
 {
     public Camera arCam;
 
-    private DatabaseClass searchResult;
+    private  DatabaseClass searchResult;
     public Image image;
     public ARTrackedImageManager imanager;
     public Light ilight;
@@ -38,11 +38,18 @@ public class TrackImageTest : MonoBehaviour
             {
                 string serachName = item.referenceImage.name.Remove(item.referenceImage.name.IndexOf('_'));
                 //WebCamTextureToCloudVision.aiSearch.ActivateCapture(arCam, item.referenceImage.name);
-               
+                try {
+                   
                     searchResult = ContentSearch.SearchItem(serachName);
-                    PlayerPrefs.SetString("History",PlayerPrefs.GetString("History")+searchResult.dName+'|'+System.DateTime.Now.ToString("dd/MM/yyyy HH:mm")+';');
-                    ShowPrefabControl.self.ShowPrefabByData(searchResult, item, arCam);
                     
+                    if (searchResult != null)
+                        ShowPrefabControl.self.ShowPrefabByData(searchResult, item);
+                    
+                } catch (System.Exception err)
+                {
+                    Debug.Log(searchResult);
+                    Debug.Log(item);
+                }
                 /*if (searchResult != null)
                 {
                     ShowPrefabControl.self.ShowPrefabByData(searchResult, item);
@@ -63,10 +70,9 @@ public class TrackImageTest : MonoBehaviour
                         args.added.Remove(delItem);
                     if (args.updated.Contains(delItem))
                         args.updated.Remove(delItem);
-                    WebCamTextureToCloudVision.aiSearch.ReleaseCapture(delItem.referenceImage.name);
                     ShowPrefabControl.self.NoShowPrefab(delItem);
                     
-                    
+
                 }
             }
         }

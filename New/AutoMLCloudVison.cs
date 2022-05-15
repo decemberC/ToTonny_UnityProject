@@ -1,24 +1,26 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine.UI;
 using SimpleJSON;
 
 public class AutoMLCloudVison : MonoBehaviour
 {
 
-    public string url ;
-   
+    public string url;
+
     public string scanningimg = "";
     private string accessCode = "";
-    private WebCamTexture webcamTexture;
+    public Camera capCam;
     public int maxResults = 10;
     public float wSecound;
     public string resultText;
-    //public Renderer showCam;
+    public Renderer render;
     public static AutoMLCloudVison aiSearch;
-    Texture2D texture2D;
+    Texture2D texture2D, cropedTexture;
     Dictionary<string, string> headers;
+
 
     [System.Serializable]
     public class AutoMLRequests
@@ -58,33 +60,51 @@ public class AutoMLCloudVison : MonoBehaviour
 
     void Start()
     {
-        try{
-        aiSearch = this;
-        headers = new Dictionary<string, string>();
+        try
+        {
+            aiSearch = this;
+            headers = new Dictionary<string, string>();
+            capCam.targetTexture.width = Display.main.systemWidth;
+            capCam.targetTexture.height = Display.main.systemHeight;
+            cropedTexture = new Texture2D((int)(capCam.targetTexture.width/1.4f),(int)(capCam.targetTexture.height/1.2f));
+            //showCam.material.mainTexture = webcamTexture;
 
-         webcamTexture = new WebCamTexture(WebCamTexture.devices[0].name, 720, 720);
-        //showCam.material.mainTexture = webcamTexture;
-        
-        }catch(System.Exception err){
+        }
+        catch (System.Exception err)
+        {
             Debug.Log(err);
         }
     }
- 
+
+    public void StartScan()
+    {
+        StartCoroutine(Capture());
+    }
     public IEnumerator Capture()
     {
-        webcamTexture.Play();
+       
+yield return new WaitForEndOfFrame();
+        capCam.Render();
+
         //Captrue Camera Data Begin
-        Color[] pixels = webcamTexture.GetPixels();
 
-        if (texture2D == null || webcamTexture.width != texture2D.width || webcamTexture.height != texture2D.height)
+
+        if (texture2D == null || capCam.targetTexture.width != texture2D.width || capCam.targetTexture.width != texture2D.height)
         {
-            texture2D = new Texture2D(webcamTexture.width, webcamTexture.height, TextureFormat.RGBA32, false);
+            texture2D = new Texture2D(capCam.targetTexture.width, capCam.targetTexture.height, TextureFormat.RGBA32, false);
         }
-        texture2D.SetPixels(pixels);
+        texture2D.ReadPixels(new Rect(0, 0, capCam.targetTexture.width, capCam.targetTexture.height), 0, 0);
+        texture2D.Apply();
+        Color[] cropper = texture2D.GetPixels(texture2D.width-(int)(texture2D.width/1.4f),  texture2D.height-(int)(texture2D.height/1.2f),(int)(texture2D.width/1.4f), (int)(texture2D.height/1.2f));
+        
+        cropedTexture.SetPixels(cropper);
+        cropedTexture.Apply();
 
-        byte[] jpg = texture2D.EncodeToJPG();
+        // render.material.mainTexture = texture2D;
+        byte[] jpg = cropedTexture.EncodeToJPG();
+        //File.WriteAllBytes("/storage/emulated/0/DCIM/" + System.DateTime.UtcNow.ToString("HH_mm_dd_MM_yyyy") + ".jpg", jpg);
         string base64 = System.Convert.ToBase64String(jpg);
-        Debug.Log(base64);
+        //Debug.Log(base64);
         //Captrue Camera Data End
 
         //Create Request send to Google Begin
@@ -99,36 +119,38 @@ public class AutoMLCloudVison : MonoBehaviour
         string jsonData = JsonUtility.ToJson(request, false);*/
         //Create Request send to Google End
         //Debug.Log(jsonData);
-        
 
-            byte[] postData = System.Text.Encoding.Default.GetBytes(base64);
 
-            
-            using (WWW www = new WWW(url, postData, headers))
+        byte[] postData = System.Text.Encoding.Default.GetBytes(base64);
+
+
+        using (WWW www = new WWW(url, postData, headers))
+        {
+            yield return www;
+            if (string.IsNullOrEmpty(www.error))
             {
-                yield return www;
-                if (string.IsNullOrEmpty(www.error))
+                string responses = www.text.Replace("\n", "").Replace(" ", "");
+                JSONNode res = JSON.Parse(responses);
+                string fullText =res["predictions"][0]["class"].ToString().Replace("\"", "");
+
+                Debug.Log("OCR Response: " +fullText);
+                if (fullText != "" && ContentSearch._capped)
                 {
-                    string responses = www.text.Replace("\n", "").Replace(" ", "");
-                    JSONNode res = JSON.Parse(responses);
-                    string fullText =res["predictions"][0]["class"].ToString();
-              
-                    Debug.Log("OCR Response: " +fullText);
-                    if (fullText != "")
-                    {
-                       //DataManage.SearchClass = fullText;
-                    }
-                    else
-                    {
-                        Debug.Log("Emypt but no error");
-                    }
+                   DataManage.searchClass = fullText;
                 }
                 else
                 {
-                    Debug.Log("Error: " + www.error);
+                    Debug.Log("Emypt but no error");
                 }
             }
-            StopCoroutine(Capture());
+            else
+            {
+                Debug.Log("Error: " + www.error);
+            }
+        }
+         
+        //yield return null;
+        StopAllCoroutines();
     }
 
 #if UNITY_WEBGL

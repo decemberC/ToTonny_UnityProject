@@ -4,20 +4,34 @@ using UnityEngine;
 
 public class DataManage:MonoBehaviour
 {
-    public static string colorPicker;
+    //public static string colorPicker;
     public static DataManage self;
-    public static List<float> searchResultH = new List<float>();
+   // public static List<float> searchResultH = new List<float>();
         public static Dictionary<string, string> languageTable = new Dictionary<string, string>();
     public static string appLan;
+    public static string searchClass = "";
     public static List<SaveDataClass> historyList = new List<SaveDataClass>();
+    public static Dictionary<string, bool> displayList = new Dictionary<string, bool>();
     public List<DatabaseClass> DB;
     void Start()
     {
         self=this;
               if (languageTable.Count == 0)
         {
-            appLan = "En";
+            if (PlayerPrefs.GetString("Language") != "")
+            {
+                appLan = PlayerPrefs.GetString("Language");
+            }
+            else {
+                appLan = "En";
+            }
+            
             SetLanguageTable(appLan);
+        }
+        if (displayList.Count == 0)
+        {
+            displayList.Add("Gluten", PlayerPrefs.GetInt("GlutenAlert", 0) == 0);
+            displayList.Add("Shellfish", PlayerPrefs.GetInt("ShellfishAlert", 0) == 0);
         }
     }
     // Start is called before the first frame update
@@ -31,20 +45,23 @@ public class DataManage:MonoBehaviour
 
         string[] matchLanguage = loader.text.Split(new string[] { ";\r\n" }, System.StringSplitOptions.None);
 
-
+       
         foreach (string i in matchLanguage)
         {
             string[] ceil = i.Split(':');
             string z = "";
+         
             for (int x = 1; x < ceil.Length; x++)
             {
 
                 z += ceil[x];
-                if (x != ceil.Length){
+                if (x+1 != ceil.Length){
                     z+=":";
                 }
             }
-            languageTable.Add(ceil[0], ceil[1]);
+            languageTable.Add(ceil[0], z);
+            
         }
+        
     }
 }
